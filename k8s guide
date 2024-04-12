@@ -1,0 +1,33 @@
+- name: Setup k3s master and nodes on Amazon Linux 2
+  hosts: k8s_ec2_First_Instance
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+
+Definition "become_method": This part refers to the method used to "become" or execute commands as another user. In many automation or configuration management tools like Ansible, 
+becoming another user is necessary for certain operations that require elevated privileges.
+
+  tasks:
+SITE:https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html
+  - name: install all updates from yum
+      yum: name=* state=latest
+
+SITE:https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
+ - name: Download k3s install script
+      get_url:
+        url: https://raw.githubusercontent.com/rancher/k3s/master/install.sh
+        dest: /tmp/install.sh
+        mode: '0700'
+
+SITE:
+ - name: install k3s on the master
+      when: inventory_hostname in groups['k8s_ec2_First_Instance']
+      command: "/tmp/install.sh"
+
+- name: chown k3s file so kubectl works from the regular user
+      when: inventory_hostname in groups['k8s_ec2_First_Instance']
+      file:
+        path: /etc/rancher/k3s/k3s.yaml
+        owner: "{{ ansible_user }}"
+
+
