@@ -1,0 +1,122 @@
+version: '2'
+services:
+  sonarqube:
+    image: sonarqube:latest
+
+Definition: Putting it all together, image: sonarqube:latest is instructing the system to use the latest version of the SonarQube container image available in the repository. 
+This is common practice, but it's worth noting that it might not always be the best choice for production environments, as it could lead to unexpected changes if the latest 
+version introduces breaking changes or bugs.
+
+ ports:
+      - "9000:9000"
+
+Definition: This setup is commonly used in scenarios like running web servers or other networked applications in containers, where you might want to expose a service running inside 
+the container to the outside world through a specific port on the host machine.
+
+environment:
+- SONAR_JDBC_URL=jdbc:postgresql://db:5432/sonar
+
+Definition: So, in summary, this environment variable is telling Sonar to connect to a PostgreSQL database running on the db host at port 5432, specifically to the sonar database.
+
+- SONAR_JDBC_USERNAME=sonar
+
+Definition: In summary, this line sets an environment variable specifying the username to be used for JDBC connection to a database, particularly in a context where 
+SonarQube or a similar tool is involved.
+
+ - SONAR_JDBC_PASSWORD=sonarpasswd
+
+Definition: So, SONAR_JDBC_PASSWORD=sonarpasswd is likely specifying the password required for SonarQube to connect to its underlying database through JDBC.
+
+ volumes:
+- sonarqube_data:/opt/sonarqube/data
+
+Definition: To summarize, the "/opt" directory holds significant importance in the Linux filesystem layout. It provides a designated location for optional software installations, 
+separating them from the core operating system components. This separation enhances system management, security, and integrity.
+
+- sonarqube_extensions:/opt/sonarqube/extensions
+Definition: In summary, sonarqube_extensions:/opt/sonarqube/extensions is likely configuring a volume or directory mount for SonarQube to access its extensions or plugins stored in the 
+/opt/sonarqube/extensions directory. This setup allows SonarQube to dynamically load and utilize these extensions for enhanced functionality.
+
+- sonarqube_logs:/opt/sonarqube/logs
+
+Definition: So, in summary, this line creates a volume named sonarqube_logs and mounts it to the /opt/sonarqube/logs directory within a container. 
+This allows data written to /opt/sonarqube/logs in the container to be persisted outside of the container, making it accessible and 
+potentially durable even if the container is stopped or removed.
+
+ mem_limit: 2500m
+
+Definition: mem_limit: 2500m refers to a memory limit setting, often found in environments such as Docker containers or Kubernetes pods. 
+In this context, "m" stands for megabytes.
+
+This setting restricts the amount of memory that a process running within the container or pod can consume. In this case, 
+the limit is set to 2500 megabytes, or 2.5 gigabytes.
+
+ cpu_shares: 512
+
+Definition: cpu_shares: 512 is a parameter used in containerization platforms like Docker to define the CPU share allocation for a container 
+relative to other containers on the same host. 
+
+ db:
+image: postgres
+
+Definition: Sure, the PostgreSQL EXPLAIN command provides a detailed breakdown of how the database engine plans to execute a given SQL query. 
+It shows the steps involved, such as accessing tables, applying filters, and joining data, along with any optimizations applied. 
+This information helps developers and administrators understand and optimize query performance.
+
+environment:
+
+- POSTGRES_DB=sonar
+
+Definition: In summary, this statement is configuring an environment variable POSTGRES_DB with the value sonar, 
+likely for use in applications or scripts that interact with a PostgreSQL database, ensuring that they use the sonar database.
+
+- POSTGRES_USER=sonar
+
+Definition: POSTGRES_USER=sonar is an environment variable assignment. It sets the value of the environment variable POSTGRES_USER to "sonar". 
+In the context of a PostgreSQL database, this environment variable likely specifies the username that will be used to connect to the database system. 
+In this case, it sets the username to "sonar". When using this variable in conjunction with PostgreSQL, it would typically be utilized during 
+setup or configuration to ensure that the specified user has appropriate permissions and access to the database system.
+
+ - POSTGRES_PASSWORD=sonarpasswd
+
+Definition: So, this line essentially sets the password for accessing the PostgreSQL database to "sonarpasswd" by assigning it to the POSTGRES_PASSWORD environment variable. 
+This is often used in setups where automation or scripting is involved, allowing the database password to be easily configured and managed outside of the application code.
+
+volumes:
+
+  - postgresql_data:/var/lib/postgresql/data
+
+Definition: /var/lib/postgresql/data: This is the path within the container where the PostgreSQL data will be stored. 
+PostgreSQL typically stores its data in this directory by default.
+
+ mem_limit: 1500m
+
+Definitoin: The term "mem_limit: 1500m" likely pertains to a memory limit setting in a computing environment, such as a container or a virtual machine.
+
+cpu_shares: 512
+
+Definition: cpu_shares: 512 is a parameter used in containerization platforms like Docker to define the CPU share allocation for a container 
+relative to other containers on the same host.
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  postgresql_data:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
