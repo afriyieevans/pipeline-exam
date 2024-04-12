@@ -1,0 +1,98 @@
+Sonarqube 
+Go to Sonarqube 
+* Administration 
+- Securrity 
+- chose user 
+- (:) click and name as sonar to generate token and save somewhere
+
+Jenkins 
+* manage Jenkins 
+- credencials 
+-click on gooble
+-add credencials 
+- chose kind and select secret text
+- paste token (sonar)
+- sonar -ID
+
+* manage Jenkins 
+- plugins 
+- available plugins
+- search and add sonarqube scanner and install 
+* manage Jenkins 
+- Tools 
+- add sonarqube scanner 
+- name 
+apply and save 
+
+* manage Jenkins 
+-system 
+-sonarqube server  
+- click add sonar (abd give a name)
+- copy url of sonarqube 
+- add sonar ID
+
+Maven 
+* plugins 
+- availablen plugins 
+- install maven intergration and maven invoka
+
+ * manage Jenkins 
+- Tools 
+- add JDN
+- click and name it Java 
+#Java Home
+echo $JAVA_HOME
+/usr/lib/jvm/java-17
+- add maven
+#Maven home (
+echo $M2_HOME
+/opt/maven/apache-maven-3.9.6
+
+Configure 
+- select Github
+- copy repo url ( hello-world )
+- select git 
+- paste same url of your github
+- poll SCM ( * * * * *)
+- PRE  steps 
+ - sonar.projectKey= hello-world 
+   sonar.exclusions=**/*.java
+- Root POM (goals and options)
+- clean install package
+* Post Build step (excute shell )
+#sudo docker rmi ezy2285/web8-image:latest
+sudo docker build -t ezy2285/web8-image:latest .
+sudo docker push ezy2285/web8-image:latest
+Note: connect your Jenkins instance to Git bash and login your docker hub with sudo -i
+- And build 
+
+connect your K3s instance to git bash 
+- vim your deployment file 
+- kubectl get nodes
+- kubectl get pods
+to delete deployment file = kubectl delete -f (file name)
+kubectl apply -f file name
+
+* Manage jenkins 
+- plugins 
+- available plugins 
+- publish over ssh 
+-  congfiguration 
+- system 
+- name : ansible 
+- hostname: ansible ip address 
+- remote directory : /home/ ec2-user/
+user: ec2-user
+Advance:
+- use pass authentofication key 
+key =  keypem (copy your key pem )
+- run test 
+
+configure 
+post build 
+send file or excute commands over ssh 
+
+excute command 
+ansible-playbook k8s-ply.yaml
+
+Note: uncomment and rebuild 
