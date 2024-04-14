@@ -60,7 +60,7 @@ site: https://docs.docker.com/compose/install/linux/
 #Ansible playbook module to add a line in a file path 
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
 vm.max_map_count=262144 sets the maximum number of memory map areas that a process can create to 262144 on a Linux system, and it's often adjusted for specific applications or services that require more memory mapping resources.
-SITE: https://stackoverflow.com/questions/42889241/how-to-increase-vm-max-map-counthttps://stackoverflow.com/questions/42889241/how-to-increase-vm-max-map-count
+SITE: https://stackoverflow.com/questions/42889241/how-to-increase-vm-max-map-count
  - name: Editing a file sysctl.conf
       ansible.builtin.lineinfile:
         path: /etc/sysctl.conf
