@@ -79,6 +79,7 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.
         path: /opt/maven
         owner: ec2-user
         group: ec2-user
+        mode: '0755'
 
 #Ansible playbook module to download packages
 The link you provided is for downloading Apache Maven, a widely used build automation tool primarily for Java projects. Here's why it's used in configuring Maven
@@ -87,7 +88,6 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_modu
       ansible.builtin.get_url:
         url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
         dest: /opt/maven/
-        mode: '0755'
 
 #Ansible playbook unarchive module    
  Is for downloading the Apache Maven binary distribution package. This package contains the necessary files and tools to set up and run Maven on your system.
