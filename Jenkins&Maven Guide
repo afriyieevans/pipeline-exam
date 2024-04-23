@@ -7,7 +7,8 @@ https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html
   tasks:
 
   Reason for becom: true 
-  This indicates that the tasks within this playbook will be executed with escalated privileges, typically using sudo or another privilege escalation mechanism. This is often necessary for performing administrative tasks such as installing software packages.
+  This indicates that the tasks within this playbook will be executed with escalated privileges, typically using sudo or another privilege escalation mechanism. 
+  This is often necessary for performing administrative tasks such as installing software packages.
 
 #Ansible playbook  to install docker using dnf
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
@@ -45,7 +46,8 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.h
         state: latest 
 
 #Ansible playbook module to add a line in a file path 
-Reason:.bash_profile is important because it allows users to customize their shell environment, set up necessary variables and configurations, and streamline their workflow, thereby enhancing productivity and ensuring consistency across shell sessions.
+Reason:.bash_profile is important because it allows users to customize their shell environment, set up necessary variables and configurations, and streamline their workflow, 
+thereby enhancing productivity and ensuring consistency across shell sessions.
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
     - name: Add a line to a file if the file does not exist, without passing regexp
       ansible.builtin.lineinfile:
@@ -91,7 +93,8 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_modu
 
 #Ansible playbook unarchive module    
  Is for downloading the Apache Maven binary distribution package. This package contains the necessary files and tools to set up and run Maven on your system.
- Overall, downloading and configuring the Apache Maven binary distribution package allows you to set up Maven on your system, enabling you to build and manage Java projects using Maven's features and capabilities.
+ Overall, downloading and configuring the Apache Maven binary distribution package allows you to set up Maven on your system, enabling you to build and manage Java projects using 
+Maven's features and capabilities.
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html
    - name: Unarchive a file that is already on the remote machine
       unarchive:
@@ -147,7 +150,8 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_m
         create: yes
 
 #Ansible playbook module to excute command
-The purpose of sourcing .bash_profile is to ensure that environment variables, aliases, and other settings defined in that file are loaded into the shell session before executing subsequent commands. This can be useful when the subsequent commands rely on specific environment variables or configurations set in the .bash_profile.
+The purpose of sourcing .bash_profile is to ensure that environment variables, aliases, and other settings defined in that file are loaded into the shell session before executing subsequent commands. 
+This can be useful when the subsequent commands rely on specific environment variables or configurations set in the .bash_profile.
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
     - name: Execute the command 
       ansible.builtin.shell: source /home/ec2-user/.bash_profile
