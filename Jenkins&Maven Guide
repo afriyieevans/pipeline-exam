@@ -233,6 +233,6 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module
 #Ansible playbook debug msg
 https://docs.ansible.com/ansible/latest/network/getting_started/first_playbook.html
 - name: Print Jenkins initial admin password
-      debug:
-        msg: "Jenkins initial admin password: {{ jenkins_admin_password.stdout }}"
+  debug:
+    msg: "Jenkins initial admin password: {{ jenkins_admin_password.stdout }}"
         
